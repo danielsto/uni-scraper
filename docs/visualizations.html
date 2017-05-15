@@ -10,7 +10,7 @@
             src="https://cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
 </head>
 <body>
-<div style="width: 98%">
+<div>
     <canvas id="universityRanking"></canvas>
 </div>
 <script>
@@ -28,7 +28,6 @@
         options: {
             legend: {
                 position: 'bottom',
-//                            display: false,
                 labels: {
                     boxWidth: 0
                 }
@@ -40,7 +39,7 @@
             scales: {
                 xAxes: [{
                     gridLines: {
-                        display: false
+                        display: true
                     },
                     ticks: {
                         beginAtZero: true
@@ -49,7 +48,9 @@
                 yAxes: [{
                     gridLines: {
                         display: false
-                    }
+                    },
+                    barPercentage: 1,
+                    categoryPercentage: 0.6
                 }]
             }
         }
