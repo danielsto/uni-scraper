@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+    <script type="text/javascript"
+            src="https://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
+</head>
+<body>
+<div style="width: 98%">
+    <canvas id="universityRanking"></canvas>
+</div>
+<script>
+    var ctx = document.getElementById('universityRanking').getContext('2d');
+    var universityRanking = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: ['Universidad Complutense de Madrid', 'Universidad Autónoma de Barcelona', 'Universidad Autónoma de Madrid', 'Universidad Politécnica de Madrid', 'Universidad de Barcelona', 'Universidad Politécnica de Cataluña', 'Universidad Politécnica de Valencia', 'Universidad Carlos III de Madrid', 'Universidad Pompeu Fabra', 'Universidad de Navarra', 'Universidad de Granada', 'Universidad Ramón Llull', 'Universidad Rey Juan Carlos', 'Universidad de Salamanca', 'Universidad de Alicante', 'Universidad de País Vasco', 'Universidad de Sevilla', 'Universidad Santiago de Compostela', 'Universidad Pontificia de Comillas', 'Universidad de Valencia', 'Universidad de Málaga', 'Universidad Europea', 'Universidad de Alcalá de Henares', 'Universidad de Zaragoza', 'Universidad de La Coruña', 'Universidad CEU San Pablo', 'Universidad de Córdoba', 'Universidad de Islas Baleares', 'Universidad de Murcia', 'Universidad de Lérida', 'Universidad de Gerona', 'Universidad Pablo de Olavide', 'Universidad Alfonso X', 'Universidad de Deusto', 'Universidad Internacional de Cataluña', 'Universidad Miguel Hernández', 'Universidad Politécnica de Cartagena', 'Universidad de La Laguna', 'Universidad de Cantabria', 'Universidad de Almería', 'Universidad de Extremadura', 'Universidad Camilo José Cela', 'Universidad Jaume I', 'Universidad de León'],
+            datasets: [{
+                label: 'Points',
+                data: [90, 68, 59, 59, 57, 42, 42, 40, 29, 29, 20, 19, 16, 15, 14, 13, 12, 12, 12, 12, 7, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1],
+                backgroundColor: '#0288D1'
+            }]
+        },
+        options: {
+            legend: {
+                position: 'bottom',
+//                            display: false,
+                labels: {
+                    boxWidth: 0
+                }
+            },
+            title: {
+                display: true,
+                text: 'El Mundo Ranking'
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }]
+            }
+        }
+    });
+</script>
+</body>
+</html>

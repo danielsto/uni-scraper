@@ -2,11 +2,6 @@ import bs4
 import requests
 import simplejson as json
 
-url = 'http://www.elmundo.es/especiales/ranking-universidades/grados.html'
-req = requests.get(url)
-status_code = req.status_code
-git_calendar = []
-
 
 def print_unis(list_unis):
     for uni in list_unis:
@@ -43,27 +38,52 @@ def rank_to_points(rank):
     return points
 
 
-if status_code == 200:
-    html = bs4.BeautifulSoup(req.text, "html.parser")
-    rankings = html.find_all('tbody')
-    rows = html.find_all('td')
-    filas = html.find_all('tr')
-    ranks = ['1º', '2º', '3º', '4º', '5º']
+def read_rankings_json():
+    with open('university_rankings.json', 'r') as fr:
+        print(fr.read())
 
-unis = get_unis(rows, ranks)
 
-uni_data = uni_to_dicts(unis)
+# Use this function to output the data in json format
+def write_rankings_json(uni_data):
+    with open('university_rankings.json', 'w') as fp:
+        json_prueba = json.dumps(uni_data, sort_keys=True, ensure_ascii=False, indent=4, encoding='utf-8')
+        fp.write(json_prueba)
 
-for item in filas:
-    position = item.contents[1].string
-    uni = item.contents[3].string
-    if position in ranks:
-        points = rank_to_points(position)
-        uni_data[uni] += points
 
-with open('university_rankings.json', 'w') as fp:
-    json_prueba = json.dumps(uni_data, sort_keys=True, ensure_ascii=False, indent=4, encoding='utf-8')
-    fp.write(json_prueba)
+def update_points(filas, ranks, uni_data):
+    for item in filas:
+        position = item.contents[1].string
+        uni = item.contents[3].string
+        if position in ranks:
+            points = rank_to_points(position)
+            uni_data[uni] += points
+    return uni_data
 
-with open('university_rankings.json', 'r') as fr:
-    print(fr.read())
+
+def scrape_rankings_web():
+    url = 'http://www.elmundo.es/especiales/ranking-universidades/grados.html'
+    req = requests.get(url)
+    status_code = req.status_code
+    if status_code == 200:
+        html = bs4.BeautifulSoup(req.text, "html.parser")
+        rows = html.find_all('td')
+        filas = html.find_all('tr')
+        ranks = ['1º', '2º', '3º', '4º', '5º']
+
+        unis = get_unis(rows, ranks)
+
+        uni_data = uni_to_dicts(unis)
+
+        uni_data = update_points(filas, ranks, uni_data)
+
+        write_rankings_json(uni_data)
+
+        # Returning keys and values to a list for Chart.js
+        values = list(reversed(sorted(uni_data.values())))
+        keys = list(reversed(sorted(uni_data, key=uni_data.get)))
+        print(keys)
+        print(values)
+
+scrape_rankings_web()
+
+
