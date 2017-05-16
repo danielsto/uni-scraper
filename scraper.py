@@ -81,7 +81,10 @@ def scrape_rankings_web():
         # Returning keys and values to a list for Chart.js
         values = list(reversed(sorted(uni_data.values())))
         keys = list(reversed(sorted(uni_data, key=uni_data.get)))
+        for i, key in enumerate(keys):
+            keys[i] = str(i+1) + ". " + str(key)
         print(keys)
+
         print(values)
 
 
