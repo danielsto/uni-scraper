@@ -1,13 +1,13 @@
 # uni-scraper 🎓 
 
 ## Overview
-``uni-scraper`` allows data from [El Mundo's ranking]() to be scraped and translated into a JSON file, making it easier to work with it. For example for your own data visualizations such as [D3]() or [Chartjs]().
+``uni-scraper`` allows data from [El Mundo's ranking](http://www.elmundo.es/especiales/ranking-universidades/listado.html) to be scraped and translated into a JSON file, making it easier to work with it. For example for your own data visualizations such as [D3](https://d3js.org) or [Chartjs](http://www.chartjs.org).
 
 ## Instructions
 Run it from the command line typing ``python scraper.py`` or use your IDE of choice. A file named ``university_rankings.json`` should be created in your working directory.
 
 ## How it works
-[El Mundo's ranking]() is a yearly publication about spanish universities. Each degree is evaluated among these institutions and the best five are listed in order. ``ùni-scraper`` assigns points to each university according to the position in that ranking:
+[El Mundo's ranking](http://www.elmundo.es/especiales/ranking-universidades/listado.html) is a yearly publication about spanish universities. Each degree is evaluated among these institutions and the best five are listed in order. ``ùni-scraper`` assigns points to each university according to the position in that ranking:
 - 1st gets 5 points
 - 2nd gets 4 points
 - 3rd gets 3 points
