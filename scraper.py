@@ -84,6 +84,10 @@ def scrape_rankings_web():
         print(keys)
         print(values)
 
-scrape_rankings_web()
 
+def main():
+    if __name__ == "__main__":
+        scrape_rankings_web()
+        read_rankings_json()
 
+main()
