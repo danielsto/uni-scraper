@@ -61,7 +61,7 @@ def update_points(filas, ranks, uni_data):
 
 
 def scrape_rankings_web():
-    url = 'http://www.elmundo.es/especiales/ranking-universidades/grados.html'
+    url = 'http://www.elmundo.es/especiales/ranking-universidades'
     req = requests.get(url)
     status_code = req.status_code
     if status_code == 200:
